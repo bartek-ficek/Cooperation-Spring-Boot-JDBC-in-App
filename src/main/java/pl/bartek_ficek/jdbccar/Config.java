@@ -2,6 +2,7 @@ package pl.bartek_ficek.jdbccar;
 
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.jdbc.core.JdbcTemplate;
 
 import javax.sql.DataSource;
 
@@ -15,5 +16,9 @@ public class Config {
         dataSourceBuilder.password("DgUebcvrWD");
         dataSourceBuilder.driverClassName("com.mysql.cj.jdbc.Driver");
         return dataSourceBuilder.build();
+    }
+
+    public JdbcTemplate getJdbcTemplate() {
+        return new JdbcTemplate(getDataSource());
     }
 }
