@@ -6,6 +6,9 @@ import org.springframework.context.event.EventListener;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+import java.util.Map;
+
 @Repository
 public class CarDao {
     
@@ -39,5 +42,10 @@ public class CarDao {
         save(new Car(2,"Fiat", "125p", "White"));
         save(new Car(3,"Ford", "Fiesta", "Blue"));
         save(new Car(4,"Volkswagen", "Polo", "Violet"));
+    }
+
+    public List<Map<String, Object>> showByCarMaker(String carMaker) {
+        String sql = "SELECT * FROM Car WHERE make LIKE ?";
+        return jdbcTemplate.queryForList(sql,new Object[]{carMaker});
     }
 }
