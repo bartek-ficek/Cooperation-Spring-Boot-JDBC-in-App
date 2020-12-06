@@ -20,7 +20,7 @@ public class CarListGui extends VerticalLayout {
     public CarListGui(CarDao carDao) {
         this.textFieldCarMake = new TextField("Car make");
         this.textAreaListOfCars = new TextArea("List of Cars");
-        this.button = new Button();
+        this.button = new Button("Show cars");
 
         add(textFieldCarMake, textAreaListOfCars, button);
         button.addClickListener(clickEvent -> {
