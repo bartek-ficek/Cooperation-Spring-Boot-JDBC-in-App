@@ -1,8 +1,10 @@
 package pl.bartek_ficek.jdbccar;
 
+import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.event.EventListener;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import javax.sql.DataSource;
@@ -25,6 +27,9 @@ public class Config {
         return new JdbcTemplate(getDataSource());
     }
 
-
-
+    @EventListener(ApplicationReadyEvent.class)
+    public void dbInit() {
+        String sql = "CREATE TABLE Car(car_id int, make varchar(255), model varchar(255), color varchar(255));";
+        getJdbcTemplate().update(sql);
+    }
 }
