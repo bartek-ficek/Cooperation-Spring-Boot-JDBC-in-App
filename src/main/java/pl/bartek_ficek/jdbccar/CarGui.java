@@ -25,8 +25,11 @@ public class CarGui extends VerticalLayout {
         this.button = new Button("Add car");
         this.carDao = carDao;
 
-        add(textFieldId, textFieldCarMake, textFieldModel, textFieldColor);
-
-
+        //TODO validation
+        add(textFieldId, textFieldCarMake, textFieldModel, textFieldColor, button);
+        button.addClickListener(clickEvent -> {
+            Car car = new Car(Long.parseLong(textFieldId.getValue()),textFieldCarMake.getValue(),textFieldModel.getValue(),textFieldColor.getValue());
+            carDao.save(car);
+        });
     }
 }

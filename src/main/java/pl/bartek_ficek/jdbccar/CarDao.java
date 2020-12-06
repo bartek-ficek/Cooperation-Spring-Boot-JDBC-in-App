@@ -21,7 +21,7 @@ public class CarDao {
         jdbcTemplate.update(sql);
     }
     
-    public void add(Car car) {
+    public void save(Car car) {
         String sql = "INSERT INTO Car VALUES(?,?,?,?)";
             jdbcTemplate.update(sql, new Object[] {
                 car.getCarId(),
@@ -35,9 +35,9 @@ public class CarDao {
     public void dbInit() {
 //        Call below method only with first use of Application. After first use, table became created
 //        createTable();
-        add(new Car(1,"Fiat", "Punto", "Orange"));
-        add(new Car(1,"Fiat", "125p", "White"));
-        add(new Car(1,"Ford", "Fiesta", "Blue"));
-        add(new Car(1,"Volkswagen", "Polo", "Violet"));
+        save(new Car(1,"Fiat", "Punto", "Orange"));
+        save(new Car(2,"Fiat", "125p", "White"));
+        save(new Car(3,"Ford", "Fiesta", "Blue"));
+        save(new Car(4,"Volkswagen", "Polo", "Violet"));
     }
 }
